@@ -1,3 +1,22 @@
+## Set Up Git Folder
+
+
+
+
+
+## Add Remote Repository
+
+echo "# sdfsdfsdf" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/dancaine/sdfsdfsdf.git
+git push -u origin main
+
+
+## Set User Information
+
     git config --global user.name "Your Name"
     git config --global user.email you@example.com
 
@@ -7,6 +26,7 @@ After doing this, you may fix the identity used for this commit with:
 
 
 
+##. Update Folder and sent to github
 
 git add .
 git commit -m "added folders"
