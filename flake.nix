@@ -1,5 +1,5 @@
 {
-  description = "Example nix-darwin system flake";
+  description = "Dans MacOS installer nix-darwin flake";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
@@ -29,17 +29,25 @@
       casks = [
       "google-chrome"
       "iina"
-      "opera"  
+      "opera"
       "vscodium"
       "qownnotes"
       "mos"
       "jdownloader"
       ];
+      masApps = {
+        "The Unarchiver" = 425424353;
       };
+      onActivation.cleanup = "zap";
+      onActivation.autoUpdate = true;
+      onActivation.upgrade = true;
+      };
+
 
       # Necessary for using flakes on this system.
       nix.settings.experimental-features = "nix-command flakes";
 
+      #Set primary user for homebrew (and other stuff??)
       system.primaryUser = "daniel";
 
       # Enable alternative shell support in nix-darwin.
