@@ -6,9 +6,11 @@
     nix-darwin.url = "github:nix-darwin/nix-darwin/master";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew }:
+  outputs = inputs@{ self, nix-darwin, home-manager, nixpkgs, nix-homebrew }:
   let
     configuration = { pkgs, config, ... }: {
 
@@ -47,7 +49,29 @@
       # Necessary for using flakes on this system.
       nix.settings.experimental-features = "nix-command flakes";
 
-      #Set primary user for homebrew (and other stuff??)
+      # Adjust System settings
+      system.defaults = {
+      dock.autohide = true;
+      dock.orientation = "left";
+      dock.persistent-apps = [
+        "/Applications/Opera.app"
+        "/System/Applications/Mail.app"
+        "/System/Applications/Notes.app"
+      ];
+      finder.ShowPathbar = true;
+      finder.ShowStatusBar = true;
+      finder.FXPreferredViewStyle = "Nlsv";
+      finder._FXSortFoldersFirst = true;
+      finder._FXSortFoldersFirstOnDesktop = true;
+      finder.FXDefaultSearchScope = "SCcf";
+      finder.ShowHardDrivesOnDesktop = true;
+      };
+
+
+
+
+
+      # Set primary user for homebrew (and other stuff??)
       system.primaryUser = "daniel";
 
       # Enable alternative shell support in nix-darwin.
